@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AuthenticateController;
+use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\LessonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +25,20 @@ Route::controller(AuthenticateController::class)->prefix('authenticate')->group(
     Route::get('user', 'getUser')->middleware('auth:sanctum');
     Route::post('login', 'login');
     Route::get('logout', 'logout')->middleware('auth:sanctum');
+});
+
+Route::controller(CourseController::class)->middleware('auth:sanctum')->prefix('authenticate')->group(function () {
+    Route::post('create', 'create');
+    Route::get('search', 'search');
+    Route::get('get/{id}', 'getCourse');
+    Route::delete('{id}', 'delete');
+    Route::post('update', 'update');
+});
+
+Route::controller(LessonController::class)->middleware('auth:sanctum')->prefix('authenticate')->group(function () {
+    Route::post('create', 'create');
+    Route::get('search', 'search');
+    Route::get('get/{id}', 'getLesson');
+    Route::delete('{id}', 'delete');
+    Route::post('update', 'update');
 });
