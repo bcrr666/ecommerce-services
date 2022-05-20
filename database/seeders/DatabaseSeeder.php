@@ -20,5 +20,23 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
         ]);
+        \App\Models\User::factory(10)->create();
+        
+        \App\Models\Course::factory()->create([
+            'name' => 'Javascript',
+            'img' => '/course/cursos-de-JavaScript.jpg',
+            'author' => 'Juan Perez',
+            'resume' => 'Es un curso importante para el manejo de javascript',
+        ]);
+
+        \App\Models\Course::factory()->create([
+            'name' => 'Node js',
+            'img' => '/course/cursos-de-JavaScript.jpg',
+            'author' => 'Juan Perez',
+            'resume' => 'Es un curso importante para el manejo de javascript',
+        ]);
+
+        \App\Models\Lesson::factory(10)->create();
+        \App\Models\Enrollment::factory(10)->create();
     }
 }
