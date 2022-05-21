@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthenticateController;
 use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\EnrollmentController;
 use App\Http\Controllers\Api\LessonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,4 +42,8 @@ Route::controller(LessonController::class)->middleware('auth:sanctum')->prefix('
     Route::get('get/{id}', 'getLesson');
     Route::delete('{id}', 'delete');
     Route::post('update', 'update');
+});
+
+Route::controller(EnrollmentController::class)->middleware('auth:sanctum')->prefix('authenticate')->group(function () {
+    Route::get('search', 'search');
 });
