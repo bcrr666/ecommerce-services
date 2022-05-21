@@ -44,6 +44,6 @@ Route::controller(LessonController::class)->middleware('auth:sanctum')->prefix('
     Route::post('update', 'update');
 });
 
-Route::controller(EnrollmentController::class)->middleware('auth:sanctum')->prefix('authenticate')->group(function () {
+Route::controller(EnrollmentController::class)->middleware('auth:sanctum')->prefix('enrollment')->group(function () {
     Route::get('search', 'search');
 });
