@@ -10,8 +10,9 @@ class EnrollmentController extends Controller
 {
     public function search(Request $request)
     {
-        $enrollments = Enrollment::selectRaw('courses.*, enrollments.id enrollment_id')
-            ->join('courses', 'courses.id', 'enrollments.coruse_id')
+        $enrollments = Enrollment::selectRaw('courses.* , enrollments.id enrollment_id,
+            concat("'.config('app.url').'", courses.img) as img')
+            ->join('courses', 'courses.id', 'enrollments.course_id')
             ->where('user_id', $request->user()->id)
             ->get();
         return response()->services(true, 'Lista de cursos matriculados', $enrollments);
