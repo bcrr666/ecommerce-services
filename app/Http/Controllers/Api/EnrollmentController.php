@@ -8,11 +8,11 @@ use App\Models\Enrollment;
 
 class EnrollmentController extends Controller
 {
-    public function search(int $userId)
+    public function search(Request $request)
     {
         $enrollments = Enrollment::selectRaw('courses.*, enrollments.id enrollment_id')
             ->join('courses', 'courses.id', 'enrollments.coruse_id')
-            ->where('user_id', $userId)
+            ->where('user_id', $request->user()->id)
             ->get();
         return response()->services(true, 'Lista de cursos matriculados', $enrollments);
     }

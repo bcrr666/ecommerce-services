@@ -45,5 +45,5 @@ Route::controller(LessonController::class)->middleware('auth:sanctum')->prefix('
 });
 
 Route::controller(EnrollmentController::class)->middleware('auth:sanctum')->prefix('enrollment')->group(function () {
-    Route::get('search/{userId}', 'search');
+    Route::get('search', 'search');
 });
